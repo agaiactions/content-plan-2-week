@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agai Actions · Content Plan · 2 Weeks</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cream:#f6f1e9;--cream2:#ede8de;--cream3:#e4ddd0;
+  --ink:#1a1612;--ink2:#2a2218;--ink3:#3d3529;
+  --gold:#9a7340;--gold-l:#c9a96e;--gold-d:#7a5828;
+  --text:#2a2218;--muted:#7a6e62;--border:rgba(154,115,64,0.18);
+  --green:#2d7a5a;--red:#b03030;--blue:#2d5a8a;--purple:#7040a0;
+  --white:#faf8f4;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.6;}
+
+/* HEADER */
+.header{background:var(--ink);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(201,169,110,0.15);}
+.hbrand{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--gold-l);}
+.hsub{font-size:9px;color:#666;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.hbadge{background:rgba(201,169,110,0.15);border:1px solid rgba(201,169,110,0.3);border-radius:20px;padding:5px 14px;font-size:9px;color:var(--gold-l);letter-spacing:1.5px;text-transform:uppercase;}
+
+/* HERO */
+.hero{background:var(--ink);padding:44px 20px 36px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,169,110,0.07),transparent);}
+.hero-eye{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-d);margin-bottom:12px;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,48px);font-weight:400;color:#f0ebe0;line-height:1.1;margin-bottom:10px;}
+.hero-title em{font-style:italic;color:var(--gold-l);}
+.hero-desc{font-size:12px;color:#888;max-width:420px;margin:0 auto 24px;line-height:1.8;}
+
+/* WEEK LEGEND */
+.legend{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 20px 28px;background:var(--ink);}
+.leg{display:flex;align-items:center;gap:6px;font-size:10px;color:#aaa;}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* TABS */
+.tabs{display:flex;background:var(--ink2);border-bottom:1px solid rgba(201,169,110,0.12);overflow-x:auto;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:12px 18px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#666;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;font-weight:500;}
+.tab:hover{color:#bbb;}
+.tab.active{color:var(--gold-l);border-bottom-color:var(--gold-l);}
+
+/* PANELS */
+.panel{display:none;max-width:720px;margin:0 auto;padding:24px 16px 80px;}
+.panel.active{display:block;}
+
+/* WEEK HEADER */
+.week-header{background:var(--ink);border-radius:10px;padding:18px 20px;margin-bottom:14px;display:flex;align-items:center;gap:16px;}
+.week-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:300;color:var(--gold-l);line-height:1;}
+.week-info{}
+.week-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-d);margin-bottom:3px;}
+.week-theme{font-family:'Playfair Display',serif;font-size:18px;color:#f0ebe0;}
+.week-sub{font-size:11px;color:#777;margin-top:2px;}
+
+/* DAY CARD */
+.day-card{background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden;}
+.day-header{background:var(--cream2);padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+.day-name{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;min-width:80px;}
+.day-label{font-size:11px;color:var(--ink3);font-weight:500;}
+.day-tag{font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:10px;margin-left:auto;font-weight:600;}
+.tag-shoot{background:rgba(45,122,90,0.12);color:#2d7a5a;border:1px solid rgba(45,122,90,0.2);}
+.tag-office{background:rgba(45,90,138,0.12);color:#2d5a8a;border:1px solid rgba(45,90,138,0.2);}
+.tag-rest{background:rgba(154,115,64,0.1);color:var(--gold);border:1px solid rgba(154,115,64,0.15);}
+
+/* POST ITEM */
+.posts{padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
+.post{background:var(--cream2);border-radius:8px;padding:12px 14px;border-left:3px solid var(--border);}
+.post.viral{border-left-color:#c05050;}
+.post.authority{border-left-color:var(--blue);}
+.post.trust{border-left-color:var(--green);}
+.post.convert{border-left-color:var(--purple);}
+.post.story{border-left-color:var(--gold);}
+.post-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+.post-platform{font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:2px 7px;border-radius:8px;}
+.pp-ig{background:rgba(176,48,80,0.1);color:#c04060;}
+.pp-tt{background:rgba(0,0,0,0.08);color:#333;}
+.pp-yt{background:rgba(176,48,48,0.1);color:#c04040;}
+.pp-pin{background:rgba(176,48,48,0.1);color:#b03030;}
+.pp-story{background:rgba(154,115,64,0.1);color:var(--gold);}
+.post-series{font-size:9px;color:var(--muted);letter-spacing:0.5px;}
+.post-hook{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px;line-height:1.4;}
+.post-desc{font-size:11px;color:var(--muted);line-height:1.7;}
+.post-format{display:inline-block;font-size:9px;color:var(--gold);background:rgba(154,115,64,0.08);border:1px solid rgba(154,115,64,0.15);padding:2px 7px;border-radius:6px;margin-top:6px;}
+.post-cta{font-size:10px;color:var(--green);margin-top:6px;font-style:italic;}
+.post-cta::before{content:'CTA: ';}
+
+/* STORIES ROW */
+.stories-row{background:var(--cream3);border-top:1px solid var(--border);padding:10px 14px;display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;}
+.story-chip{font-size:10px;color:var(--ink3);background:rgba(154,115,64,0.08);border:1px solid rgba(154,115,64,0.15);padding:4px 10px;border-radius:20px;}
+.stories-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-right:2px;padding-top:4px;flex-shrink:0;}
+
+/* SHOOT GUIDE */
+.shoot-guide{background:rgba(45,122,90,0.06);border:1px solid rgba(45,122,90,0.18);border-radius:8px;padding:12px 14px;margin-bottom:10px;}
+.shoot-title{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:8px;}
+.shoot-items{display:flex;flex-wrap:wrap;gap:6px;}
+.shoot-item{font-size:10px;color:var(--ink3);background:rgba(45,122,90,0.08);border:1px solid rgba(45,122,90,0.15);padding:3px 9px;border-radius:6px;}
+
+/* NOTE */
+.note{background:rgba(154,115,64,0.07);border-left:2px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--ink);line-height:1.7;}
+.note strong{color:var(--ink);font-weight:600;}
+
+/* OVERVIEW */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.ov-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;}
+.ov-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--gold-l);line-height:1;margin-bottom:4px;}
+.ov-label{font-size:10px;color:var(--muted);letter-spacing:0.5px;}
+.week-divider{height:1px;background:var(--border);margin:20px 0;}
+
+/* TIPS */
+.tips{background:var(--ink);border-radius:10px;padding:20px;margin-top:16px;}
+.tips-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--gold-l);margin-bottom:12px;font-style:italic;}
+.tip{display:flex;gap:10px;margin-bottom:8px;font-size:11px;color:#bbb;line-height:1.7;}
+.tip::before{content:'→';color:var(--gold-d);flex-shrink:0;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div><div class="hbrand">Agai Actions</div><div class="hsub">Content Plan</div></div>
+  <div class="hbadge">2 Weeks · April 2026</div>
+</div>
+
+<div class="hero">
+  <div class="hero-eye">Content Plan · April 2026</div>
+  <h1 class="hero-title">2 недели контента<br><em>которые строят бренд</em></h1>
+  <p class="hero-desc">Instagram · TikTok · Pinterest · YouTube Shorts. Рахман и Арам в кадре. Тема недели 1 — цена и prep. Тема недели 2 — качество и подрядчики.</p>
+</div>
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:#c05050;"></div>Viral / Hook</div>
+  <div class="leg"><div class="leg-dot" style="background:#2d5a8a;"></div>Authority</div>
+  <div class="leg"><div class="leg-dot" style="background:#2d7a5a;"></div>Trust / BTS</div>
+  <div class="leg"><div class="leg-dot" style="background:#7040a0;"></div>Conversion</div>
+  <div class="leg"><div class="leg-dot" style="background:#9a7340;"></div>Stories</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showPanel('overview',this)">Обзор</div>
+  <div class="tab" onclick="showPanel('w1',this)">Неделя 1</div>
+  <div class="tab" onclick="showPanel('w2',this)">Неделя 2</div>
+  <div class="tab" onclick="showPanel('shooting',this)">Что снимать</div>
+</div>
+
+<!-- ===== OVERVIEW ===== -->
+<div class="panel active" id="panel-overview">
+
+  <div class="note"><strong>Логика плана:</strong> каждая неделя крутится вокруг одной боли. Неделя 1 — цена и prep. Неделя 2 — качество и подрядчики. Одна боль → 5 форматов → 4 платформы.</div>
+
+  <div class="overview-grid">
+    <div class="ov-card"><div class="ov-num">28</div><div class="ov-label">постов за 2 недели</div></div>
+    <div class="ov-card"><div class="ov-num">4</div><div class="ov-label">платформы</div></div>
+    <div class="ov-card"><div class="ov-num">2</div><div class="ov-label">главные боли</div></div>
+    <div class="ov-card"><div class="ov-num">5</div><div class="ov-label">blueprint-форматов</div></div>
+  </div>
+
+  <!-- WEEK 1 SUMMARY -->
+  <div class="week-header">
+    <div class="week-num">W1</div>
+    <div class="week-info">
+      <div class="week-label">Неделя 1 · 9–15 апреля</div>
+      <div class="week-theme">Тема: Цена и Wall Prep</div>
+      <div class="week-sub">"Wallpaper isn't expensive. Bad prep is."</div>
+    </div>
+  </div>
+
+  <div class="note">Боль недели: люди не понимают почему wallpaper стоит столько — и не знают что prep решает 80% результата. Это тестовая неделя — смотрим что цепляет.</div>
+
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:14px;">
+    <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Контент-план недели</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:#c05050;font-weight:600;min-width:16px;">3×</span>Viral Reels (IG + TikTok) — hook-first, pain-based</div>
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:var(--blue);font-weight:600;min-width:16px;">2×</span>Authority Posts (IG Carousel + YouTube Short)</div>
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:var(--green);font-weight:600;min-width:16px;">2×</span>Behind the Scenes (IG Reel + Stories)</div>
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:var(--gold);font-weight:600;min-width:16px;">5×</span>Pinterest Pins (визуальные адаптации)</div>
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:var(--muted);font-weight:600;min-width:16px;">∞</span>Daily Stories — каждый день</div>
+    </div>
+  </div>
+
+  <div class="week-divider"></div>
+
+  <!-- WEEK 2 SUMMARY -->
+  <div class="week-header">
+    <div class="week-num">W2</div>
+    <div class="week-info">
+      <div class="week-label">Неделя 2 · 16–22 апреля</div>
+      <div class="week-theme">Тема: Качество и Подрядчики</div>
+      <div class="week-sub">"This is why most wallpaper jobs look cheap."</div>
+    </div>
+  </div>
+
+  <div class="note">Боль недели: плохое качество установки — почему результат выглядит дёшево и причём тут подрядчики. Усиливаем тему которая зашла на неделе 1.</div>
+
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:14px;">
+    <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Контент-план недели</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:#c05050;font-weight:600;min-width:16px;">3×</span>Viral Reels — "why it looks cheap" + contractor truth</div>
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:var(--blue);font-weight:600;min-width:16px;">2×</span>Authority — process walkthrough + wallpaper truth</div>
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:var(--purple);font-weight:600;min-width:16px;">1×</span>Conversion — "what it looks like to work with us"</div>
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:var(--green);font-weight:600;min-width:16px;">1×</span>Before/After с контекстом</div>
+      <div style="font-size:12px;color:var(--ink3);display:flex;gap:10px;align-items:baseline;"><span style="color:var(--gold);font-weight:600;min-width:16px;">5×</span>Pinterest Pins</div>
+    </div>
+  </div>
+
+  <div class="tips">
+    <div class="tips-title">Главные правила на эти 2 недели</div>
+    <div class="tip">Каждый ролик — одна сильная мысль. Не 5 советов — один конкретный pain или truth.</div>
+    <div class="tip">На объекте снимаем всё: стены, prep, детали, ошибки, процесс. Сырьё потом превращается в контент.</div>
+    <div class="tip">Stories каждый день — минимум 3–5. Job in progress, быстрая мысль, фрагмент процесса.</div>
+    <div class="tip">TikTok — более сырой и прямой чем Instagram. Одно и то же видео выкладываем на обе платформы.</div>
+    <div class="tip">После каждого ролика смотрим: что досматривают, что пересылают, что даёт DM. Это важнее просмотров.</div>
+  </div>
+
+</div>
+
+<!-- ===== WEEK 1 ===== -->
+<div class="panel" id="panel-w1">
+
+  <div class="week-header">
+    <div class="week-num">W1</div>
+    <div class="week-info">
+      <div class="week-label">9–15 апреля 2026</div>
+      <div class="week-theme">Цена и Wall Prep</div>
+      <div class="week-sub">Главный хук: "Wallpaper isn't expensive. Bad prep is."</div>
+    </div>
+  </div>
+
+  <!-- MON -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Monday</div>
+      <div class="day-label">Запуск темы недели</div>
+      <div class="day-tag tag-shoot">📍 На объекте</div>
+    </div>
+    <div class="posts">
+      <div class="shoot-guide">
+        <div class="shoot-title">📹 Что снимать сегодня</div>
+        <div class="shoot-items">
+          <span class="shoot-item">Стены до prep</span>
+          <span class="shoot-item">Процесс подготовки</span>
+          <span class="shoot-item">Talking head 30–45 сек</span>
+          <span class="shoot-item">Детали текстуры</span>
+        </div>
+      </div>
+
+      <div class="post viral">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-platform pp-tt">TikTok</span>
+          <span class="post-series">Series: What Nobody Tells You</span>
+        </div>
+        <div class="post-hook">"Wallpaper isn't expensive. Bad prep is."</div>
+        <div class="post-desc">Talking head. Aram или Rahman говорит прямо в камеру. Объясняет что большинство людей думают что платят за обои — но на самом деле платят за то что под ними. Показываем стену до и после prep.</div>
+        <span class="post-format">Viral Opinion · 30–45 sec</span>
+        <div class="post-cta">"Save this if wallpaper is on your list."</div>
+      </div>
+
+      <div class="post trust">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-series">Series: Inside the Job</span>
+        </div>
+        <div class="post-hook">POV: we show up before the wallpaper does.</div>
+        <div class="post-desc">Short BTS clip — команда приезжает, осматривает стены, начинает prep. Никакого текста — только процесс и музыка. Показываем что мы делаем то что другие пропускают.</div>
+        <span class="post-format">BTS Reel · 15–20 sec</span>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Job in progress</span>
+      <span class="story-chip">Close-up текстуры стены</span>
+      <span class="story-chip">Poll: "Do you know what wall prep is?"</span>
+    </div>
+  </div>
+
+  <!-- TUE -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Tuesday</div>
+      <div class="day-label">Образовательный день</div>
+      <div class="day-tag tag-office">💻 Офис / монтаж</div>
+    </div>
+    <div class="posts">
+      <div class="post authority">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-series">Series: Why This Actually Matters</span>
+        </div>
+        <div class="post-hook">Why wall prep matters more than the wallpaper itself.</div>
+        <div class="post-desc">Carousel 4–6 слайдов. Слайд 1: хук. Слайд 2: что происходит без prep. Слайд 3: что происходит с prep. Слайд 4: визуальное сравнение. Слайд 5: как мы это делаем. Слайд 6: CTA.</div>
+        <span class="post-format">Educational Carousel · 4–6 slides</span>
+        <div class="post-cta">"Send this to someone planning wallpaper."</div>
+      </div>
+
+      <div class="post authority">
+        <div class="post-top">
+          <span class="post-platform pp-yt">YouTube Short</span>
+          <span class="post-series">Series: Wallpaper Truths</span>
+        </div>
+        <div class="post-hook">"Good wallpaper won't save bad walls."</div>
+        <div class="post-desc">Короткий 30-секундный truth. Берём footage с объекта — показываем плохую стену и объясняем. Repurpose из Monday footage.</div>
+        <span class="post-format">YouTube Short · 30 sec</span>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Repost carousel slide 1</span>
+      <span class="story-chip">Quick truth о prep</span>
+      <span class="story-chip">Q&A sticker</span>
+    </div>
+  </div>
+
+  <!-- WED -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Wednesday</div>
+      <div class="day-label">Вирусный / юмор</div>
+      <div class="day-tag tag-shoot">📍 На объекте</div>
+    </div>
+    <div class="posts">
+      <div class="shoot-guide">
+        <div class="shoot-title">📹 Что снимать сегодня</div>
+        <div class="shoot-items">
+          <span class="shoot-item">Talking head — humorous take</span>
+          <span class="shoot-item">Before state стен</span>
+          <span class="shoot-item">Reaction shot</span>
+        </div>
+      </div>
+
+      <div class="post viral">
+        <div class="post-top">
+          <span class="post-platform pp-tt">TikTok</span>
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-series">Series: Clients Think / Reality</span>
+        </div>
+        <div class="post-hook">"When the client says: 'the walls are ready.'"</div>
+        <div class="post-desc">Humor format. Показываем что имеет в виду клиент — и что на самом деле видим мы. Relatable для всех кто когда-либо делал ремонт. Высокий шанс пересылки.</div>
+        <span class="post-format">Humor Skit · 20–30 sec</span>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Behind the joke</span>
+      <span class="story-chip">Real wall we showed up to</span>
+      <span class="story-chip">Swipe up: book free visit</span>
+    </div>
+  </div>
+
+  <!-- THU -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Thursday</div>
+      <div class="day-label">Pinterest + Repurpose</div>
+      <div class="day-tag tag-office">💻 Офис</div>
+    </div>
+    <div class="posts">
+      <div class="post trust">
+        <div class="post-top">
+          <span class="post-platform pp-pin">Pinterest</span>
+          <span class="post-series">Board: Wallpaper Ideas LA</span>
+        </div>
+        <div class="post-hook">5 pins: Before/after + room inspiration + wallpaper textures</div>
+        <div class="post-desc">Берём лучшие кадры с объектов. Добавляем SEO-описания: "wallpaper installation Los Angeles", "accent wall ideas", "bedroom wallpaper 2026". Создаём доски по комнатам.</div>
+        <span class="post-format">Pinterest Pins · 5 шт</span>
+      </div>
+
+      <div class="post viral">
+        <div class="post-top">
+          <span class="post-platform pp-tt">TikTok</span>
+          <span class="post-series">Series: Stop Doing This</span>
+        </div>
+        <div class="post-hook">"Stop hiring general contractors for wallpaper."</div>
+        <div class="post-desc">Repurpose footage с объекта. Talking head — прямой и короткий. Почему специализация важна. Почему "also does wallpaper" — это красный флаг.</div>
+        <span class="post-format">Direct Opinion · 20–25 sec</span>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Wallpaper sample показываем</span>
+      <span class="story-chip">Poll: "Have you ever had a bad install?"</span>
+    </div>
+  </div>
+
+  <!-- FRI -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Friday</div>
+      <div class="day-label">Финал недели + Before/After</div>
+      <div class="day-tag tag-shoot">📍 На объекте</div>
+    </div>
+    <div class="posts">
+      <div class="shoot-guide">
+        <div class="shoot-title">📹 Что снимать сегодня</div>
+        <div class="shoot-items">
+          <span class="shoot-item">Final result reveal</span>
+          <span class="shoot-item">Before → After sequence</span>
+          <span class="shoot-item">Detail shots</span>
+          <span class="shoot-item">Team shot если возможно</span>
+        </div>
+      </div>
+
+      <div class="post trust">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-platform pp-tt">TikTok</span>
+          <span class="post-series">Series: Before / After with Context</span>
+        </div>
+        <div class="post-hook">This is what happens when prep is done right.</div>
+        <div class="post-desc">Blueprint 5. Before → процесс prep → after. Объясняем в caption или voice-over почему результат выглядит именно так. Не просто красивый reveal — reveal с мыслью.</div>
+        <span class="post-format">Before/After + Context · 30–45 sec</span>
+        <div class="post-cta">"If you want this in your home — DM us 'TRANSFORM'."</div>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Final reveal preview</span>
+      <span class="story-chip">Client reaction (если есть)</span>
+      <span class="story-chip">Week recap — что снимали</span>
+    </div>
+  </div>
+
+  <!-- SAT/SUN -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Sat / Sun</div>
+      <div class="day-label">Анализ + подготовка к неделе 2</div>
+      <div class="day-tag tag-rest">📊 Аналитика</div>
+    </div>
+    <div class="posts">
+      <div class="note" style="margin:0;">
+        <strong>Что смотрим за неделю:</strong> какой ролик дал больше всего DM / saves / shares. Какой хук удержал просмотры до конца. Что пересылали. Эти данные определяют акцент недели 2.
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Behind the scenes weekend</span>
+      <span class="story-chip">Wallpaper inspiration poll</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== WEEK 2 ===== -->
+<div class="panel" id="panel-w2">
+
+  <div class="week-header">
+    <div class="week-num">W2</div>
+    <div class="week-info">
+      <div class="week-label">16–22 апреля 2026</div>
+      <div class="week-theme">Качество и Подрядчики</div>
+      <div class="week-sub">Главный хук: "This is why most wallpaper jobs look cheap."</div>
+    </div>
+  </div>
+
+  <div class="note"><strong>Важно:</strong> усиливаем тему которая лучше зашла на неделе 1. Если prep тема дала больше реакций — добавляем ещё один prep ролик. Алгоритм любит последовательность.</div>
+
+  <!-- MON -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Monday</div>
+      <div class="day-label">Запуск темы недели</div>
+      <div class="day-tag tag-shoot">📍 На объекте</div>
+    </div>
+    <div class="posts">
+      <div class="shoot-guide">
+        <div class="shoot-title">📹 Что снимать сегодня</div>
+        <div class="shoot-items">
+          <span class="shoot-item">Close-up швов и стыков</span>
+          <span class="shoot-item">Пример плохой vs хорошей работы</span>
+          <span class="shoot-item">Talking head — жёсткая подача</span>
+          <span class="shoot-item">Detail: pattern matching</span>
+        </div>
+      </div>
+
+      <div class="post viral">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-platform pp-tt">TikTok</span>
+          <span class="post-series">Series: This Is Why It Looks Cheap</span>
+        </div>
+        <div class="post-hook">"This is why most wallpaper jobs look cheap."</div>
+        <div class="post-desc">Blueprint 2 — Pain + Visual Proof. Показываем конкретные детали: плохой стык, неровный паттерн, пузырь. Объясняем что именно портит результат. Aram или Rahman в кадре — уверенно и прямо.</div>
+        <span class="post-format">Pain + Visual Proof · 30–45 sec</span>
+        <div class="post-cta">"Save this before hiring anyone for wallpaper."</div>
+      </div>
+
+      <div class="post viral">
+        <div class="post-top">
+          <span class="post-platform pp-tt">TikTok</span>
+          <span class="post-series">Series: Wallpaper Truths</span>
+        </div>
+        <div class="post-hook">"Expensive wallpaper can still look bad. Here's why."</div>
+        <div class="post-desc">Короткий 20-секундный truth. Снимаем на объекте — показываем пример и быстро объясняем. Repurpose footage.</div>
+        <span class="post-format">Short Truth · 20 sec</span>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Detail shot: bad seam</span>
+      <span class="story-chip">Poll: "Have you seen bad wallpaper work?"</span>
+      <span class="story-chip">Quick opinion</span>
+    </div>
+  </div>
+
+  <!-- TUE -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Tuesday</div>
+      <div class="day-label">Contractor Truth Day</div>
+      <div class="day-tag tag-office">💻 Офис / студия</div>
+    </div>
+    <div class="posts">
+      <div class="post viral">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-platform pp-tt">TikTok</span>
+          <span class="post-series">Series: What Nobody Tells You</span>
+        </div>
+        <div class="post-hook">"If your contractor says 'I also do wallpaper' — run."</div>
+        <div class="post-desc">Talking head. Прямо и уверенно. Объясняем почему специализация критична. Wallpaper — это не paint. Плохая установка = испорченные стены. Наша позиция чёткая.</div>
+        <span class="post-format">Viral Opinion · 30 sec</span>
+      </div>
+
+      <div class="post authority">
+        <div class="post-top">
+          <span class="post-platform pp-yt">YouTube Short</span>
+          <span class="post-series">Series: How We Do It Right</span>
+        </div>
+        <div class="post-hook">This is what professional wallpaper installation actually looks like.</div>
+        <div class="post-desc">Process Short — нарезка с нескольких объектов. Показываем наш стандарт: prep, alignment, clean seams, final reveal. Без слов — только процесс и результат.</div>
+        <span class="post-format">Process Short · 45–60 sec</span>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Repost main reel</span>
+      <span class="story-chip">DM us if you have questions</span>
+    </div>
+  </div>
+
+  <!-- WED -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Wednesday</div>
+      <div class="day-label">Authority + Design</div>
+      <div class="day-tag tag-shoot">📍 На объекте</div>
+    </div>
+    <div class="posts">
+      <div class="shoot-guide">
+        <div class="shoot-title">📹 Что снимать сегодня</div>
+        <div class="shoot-items">
+          <span class="shoot-item">Образцы обоев</span>
+          <span class="shoot-item">Talking head — design advice</span>
+          <span class="shoot-item">Process: matching pattern</span>
+          <span class="shoot-item">Before + after fragments</span>
+        </div>
+      </div>
+
+      <div class="post authority">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-series">Series: How to Choose the Right Wallpaper</span>
+        </div>
+        <div class="post-hook">Most people choose wallpaper backwards. Here's how to do it right.</div>
+        <div class="post-desc">Carousel или Reel с Aram или Rahman. Объясняем логику выбора: сначала стены, потом свет, потом стиль, потом паттерн. Показываем образцы. Экспертный формат.</div>
+        <span class="post-format">Educational Reel · 45 sec</span>
+        <div class="post-cta">"DM us and we'll help you choose for your space."</div>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Samples show</span>
+      <span class="story-chip">Which do you prefer? (poll с 2 вариантами)</span>
+      <span class="story-chip">Quick tip</span>
+    </div>
+  </div>
+
+  <!-- THU -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Thursday</div>
+      <div class="day-label">Conversion Day</div>
+      <div class="day-tag tag-office">💻 Офис</div>
+    </div>
+    <div class="posts">
+      <div class="post convert">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-series">Series: What It Looks Like to Work With Us</span>
+        </div>
+        <div class="post-hook">Here's exactly how a project with us works — from first DM to finished wall.</div>
+        <div class="post-desc">Talking head или carousel. Объясняем весь процесс: DM → звонок → бесплатный выезд → замеры → образцы → контракт → установка. Снимает тревогу. Переводит интерес в действие.</div>
+        <span class="post-format">Process Explainer · 45–60 sec</span>
+        <div class="post-cta">"DM us 'TRANSFORM' — free in-home consultation."</div>
+      </div>
+
+      <div class="post trust">
+        <div class="post-top">
+          <span class="post-platform pp-pin">Pinterest</span>
+          <span class="post-series">Board: Before & After Transformations</span>
+        </div>
+        <div class="post-hook">5 новых pins — лучшие before/after недели</div>
+        <div class="post-desc">Берём footage с обоих недель. SEO-описания: "wallpaper before after LA", "living room wallpaper transformation", "bedroom accent wall Los Angeles".</div>
+        <span class="post-format">Pinterest Pins · 5 шт</span>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">Repost conversion reel</span>
+      <span class="story-chip">"Book free visit" CTA slide</span>
+      <span class="story-chip">Link in bio reminder</span>
+    </div>
+  </div>
+
+  <!-- FRI -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Friday</div>
+      <div class="day-label">Финал + Strong Before/After</div>
+      <div class="day-tag tag-shoot">📍 На объекте</div>
+    </div>
+    <div class="posts">
+      <div class="shoot-guide">
+        <div class="shoot-title">📹 Что снимать сегодня</div>
+        <div class="shoot-items">
+          <span class="shoot-item">Финальный reveal проекта</span>
+          <span class="shoot-item">Team в работе</span>
+          <span class="shoot-item">Detail shots результата</span>
+        </div>
+      </div>
+
+      <div class="post trust">
+        <div class="post-top">
+          <span class="post-platform pp-ig">Instagram</span>
+          <span class="post-platform pp-tt">TikTok</span>
+          <span class="post-series">Series: Before / After with Context</span>
+        </div>
+        <div class="post-hook">This is what changes when wallpaper is installed the right way.</div>
+        <div class="post-desc">Blueprint 5. Сильный reveal с объяснением. Что было не так с пространством → что изменилось → почему именно это решение. Лучший контент недели.</div>
+        <span class="post-format">Before/After + Context · 30–45 sec</span>
+        <div class="post-cta">"Want this? DM us 'TRANSFORM' 📍 LA & beyond."</div>
+      </div>
+    </div>
+    <div class="stories-row">
+      <span class="stories-label">Stories:</span>
+      <span class="story-chip">2-week recap</span>
+      <span class="story-chip">Best moment этих 2 недель</span>
+      <span class="story-chip">Thank you + CTA</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== SHOOTING GUIDE ===== -->
+<div class="panel" id="panel-shooting">
+
+  <div class="note"><strong>Главный принцип:</strong> не ходить специально снимать контент. Снимать во время работы. Каждый выезд — это съёмочный день.</div>
+
+  <div class="week-header" style="margin-bottom:14px;">
+    <div class="week-num">📹</div>
+    <div class="week-info">
+      <div class="week-label">Shooting Guide</div>
+      <div class="week-theme">Что снимать на каждом объекте</div>
+      <div class="week-sub">2–3 дня в неделю · максимум сырья</div>
+    </div>
+  </div>
+
+  <div class="shoot-guide" style="margin-bottom:10px;">
+    <div class="shoot-title">🏠 До начала работы</div>
+    <div class="shoot-items">
+      <span class="shoot-item">Стены в исходном состоянии</span>
+      <span class="shoot-item">Проблемные зоны крупным планом</span>
+      <span class="shoot-item">Общий вид комнаты</span>
+      <span class="shoot-item">Talking head: "Here's what we found"</span>
+    </div>
+  </div>
+
+  <div class="shoot-guide" style="margin-bottom:10px;">
+    <div class="shoot-title">🔧 В процессе prep и установки</div>
+    <div class="shoot-items">
+      <span class="shoot-item">Процесс подготовки стен</span>
+      <span class="shoot-item">Раскладка рулонов</span>
+      <span class="shoot-item">Pattern matching крупно</span>
+      <span class="shoot-item">Нанесение первой полосы</span>
+      <span class="shoot-item">Детали — швы, углы, края</span>
+      <span class="shoot-item">Команда в работе</span>
+    </div>
+  </div>
+
+  <div class="shoot-guide" style="margin-bottom:10px;">
+    <div class="shoot-title">✨ После завершения</div>
+    <div class="shoot-items">
+      <span class="shoot-item">Final reveal — slow pan</span>
+      <span class="shoot-item">Before → After sequence</span>
+      <span class="shoot-item">Detail shots результата</span>
+      <span class="shoot-item">Talking head: "This is why it works"</span>
+      <span class="shoot-item">Texture close-up</span>
+    </div>
+  </div>
+
+  <div class="shoot-guide" style="margin-bottom:10px;">
+    <div class="shoot-title">🎙 Talking Head темы для записи</div>
+    <div class="shoot-items">
+      <span class="shoot-item">"Wallpaper isn't expensive. Bad prep is."</span>
+      <span class="shoot-item">"This is why it looks cheap"</span>
+      <span class="shoot-item">"If your contractor says this, run"</span>
+      <span class="shoot-item">"Most people choose wallpaper backwards"</span>
+      <span class="shoot-item">"This step decides everything"</span>
+    </div>
+  </div>
+
+  <div class="shoot-guide">
+    <div class="shoot-title">📱 Stories в реальном времени</div>
+    <div class="shoot-items">
+      <span class="shoot-item">Первое сообщение дня с объекта</span>
+      <span class="shoot-item">Quick opinion / мысль дня</span>
+      <span class="shoot-item">Fragment процесса</span>
+      <span class="shoot-item">Образец / текстура</span>
+      <span class="shoot-item">Poll или вопрос</span>
+    </div>
+  </div>
+
+  <div class="tips" style="margin-top:16px;">
+    <div class="tips-title">Технические советы</div>
+    <div class="tip">Снимаем вертикально 9:16 — подходит для Instagram, TikTok и YouTube Shorts одновременно.</div>
+    <div class="tip">Talking head — стабильная камера, хороший свет. Достаточно телефона на штативе.</div>
+    <div class="tip">Снимаем много — отбираем лучшее. Лучше 10 минут сырья чем ничего.</div>
+    <div class="tip">Один и тот же footage → Instagram Reel + TikTok + YouTube Short. Тройная отдача от одной съёмки.</div>
+    <div class="tip">Aram и Rahman снимают по очереди — разные голоса, разная энергия, оба лица бренда.</div>
+  </div>
+
+</div>
+
+<script>
+function showPanel(name,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
